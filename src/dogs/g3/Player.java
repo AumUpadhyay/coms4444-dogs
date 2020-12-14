@@ -25,7 +25,6 @@ public class Player extends dogs.sim.Player {
 	private List<Dog> myDogs;
 	private Integer round;
 	private Owner myOwner;
-	// private List<Owner> myOtherInstances;
 	private List<Owner> otherInstances;
 	private List<Owner> group5Instances;
 	private List<Owner> group4Instances;
