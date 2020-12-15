@@ -315,7 +315,7 @@ public class Player extends dogs.sim.Player {
 					simPrinter.println("Exercise remaining: " + d.getExerciseTimeRemaining());
 					simPrinter.println("Dave's parked dogs: " + this.graph.getNode(myOwner).getParkedDogs());
 				}
-				if (d.isWaitingForOwner(myOwner) && d.getExerciseTimeRemaining()==0.0 && !this.graph.getNode(myOwner).getParkedDogs().contains(d)){
+				if (d.isWaitingForOwner(myOwner) && d.getExerciseTimeRemaining()==0.0 && !this.graph.getNode(myOwner).getParkedDogs().contains(d.getRandomID())){
 					Dog dogToPark = d;
 					List<OwnerName> neighborNames = this.graph.getConnections(myOwner);
 					List<Owner> neighbors = new ArrayList<>();
@@ -324,6 +324,8 @@ public class Player extends dogs.sim.Player {
 							neighbors.add(owner);
 						}
 					}
+					System.out.println(this.graph.getNode(myOwner).getParkedDogs());
+					System.out.println(d.getRandomID());
 					directive = parkDog(myOwner, neighbors, dogToPark);
 					this.graph.getNode(myOwner).addParkedDog(dogToPark);
 					return directive;
@@ -954,7 +956,7 @@ public class Player extends dogs.sim.Player {
 		for (Dog dog : allDogs) {
 			if (dog.isWaitingForPerson()) {
 				Owner ownerWaited = dog.getOwnerWaitingFor();
-				if (neighbors.contains(ownerWaited) && !graph.getNode(ownerWaited).getParkedDogs().contains(dog)) {
+				if (neighbors.contains(ownerWaited) && !graph.getNode(ownerWaited).getParkedDogs().contains(dog.getRandomID())) {
 					busyMap.put(ownerWaited, busyMap.get(ownerWaited) + 1);
 				}
 			}
